@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex: 1;
+}
+
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px 40px;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
