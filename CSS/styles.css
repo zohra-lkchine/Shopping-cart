@@ -15,6 +15,10 @@ h1 {
     font-weight: 900;
 }
 
+p {
+    color : orange
+}
+
 /* Items Section styles ******************************/
 
 .items {
@@ -24,22 +28,11 @@ h1 {
 
 .layout {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
 }
 
-.item-cont-1 {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
 
-.item-cont-2 {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.item-1, .item-2, .item-3, .item-4, .item-5, .item-6 {
+.item {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -51,7 +44,7 @@ h1 {
     border-radius: 6px;
 }
 
-img {
+.image {
     width: 200px;
     height: 180px;
     border-radius: 6px;
@@ -102,7 +95,7 @@ button:hover {
 .cart {
     display: flex;
     flex-direction: column;
-    gap: 150px;
+    gap: 10px;
     color: #fff;
     font-weight: bold;
 }
