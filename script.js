@@ -40,6 +40,11 @@ let products = [
 let layoutdiv = document.querySelector(".layout");
 let btnadd = document.querySelector(".additem");
 let cartdiv = document.querySelector(".cart .addeditems");
+let addeditems = document.querySelectorAll(".cart .addeditems .cart-items");
+let totalpDiv = document.querySelector(".totalprice");
+let deleteBtn = document.querySelector(".delete");
+let totalPrice = 0;
+
 const Addproducts = () => {
     let productsList = products.map(item => {
       return `
@@ -60,12 +65,12 @@ const Addproducts = () => {
     layoutdiv.innerHTML = productsList.join('');
 }
 
-
+// function pour ajouter produit au panier
 const getItem = (id) => {
 let currentProduct = products.find(item => item.id === id);
     
 console.log(currentProduct)
-    return cartdiv.innerHTML += `
+     cartdiv.innerHTML += `
     <div class="cart-items">
     <img src="${currentProduct.image}" width="100" height="100" />
     <h4>Name</span>
@@ -73,6 +78,17 @@ console.log(currentProduct)
     <h4>Price</span>
     <p>${currentProduct.price} $
     </div> `;
+
+    totalPrice += currentProduct.price;
+    totalpDiv.innerHTML = `${totalPrice} $`;
+
+}
+
+// function pour supprimer touts les produits du panier
+
+const removeAll = () => {
+    cartdiv.innerHTML = "";
+    totalpDiv.innerHTML = "";
 }
 
 
