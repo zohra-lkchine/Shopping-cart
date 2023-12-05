@@ -30,6 +30,22 @@ p {
     background-color: #D0D4CA;
 }
 
+.like {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.likebtn {
+    padding: 2px 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.likeicon {
+    width: 20px;
+}
+
 .layout {
     display: flex;
     flex-wrap: wrap;
@@ -60,7 +76,7 @@ span {
     text-align: center;
 }
 
-button {
+.additem {
     padding: 6px 0px;
     color: #fff;
     background-color: #191717;
@@ -85,7 +101,7 @@ button {
     color: #fff;
 }
 
-button:hover {
+.additem:hover {
     background-color: #454545;
 }
 
