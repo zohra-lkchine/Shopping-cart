@@ -50,6 +50,8 @@ let addeditems = document.querySelectorAll(".cart .addeditems .cart-items");
 let totalpDiv = document.querySelector(".totalprice");
 let deleteBtn = document.querySelector(".delete");
 let numbrAdd = document.querySelector(".nbr");
+
+let pr = document.querySelector(".addeditems");
 let totalPrice = 0;
 
 
@@ -72,11 +74,11 @@ const Addproducts = () => {
       </buton>
       </div>
       <span>${item.price} $</span>
-      <button type="button" onclick="getItem(${item.id})" class="additem">Add to Cart</button>
+      <button type="button" onclick="getItem(${item.id})" id="#cart-${item.id}" class="additem">Add to Cart</button>
       <div class="addtocart">
-      <span class="plus">+</span>
+      <span class="plus" onclick="increaseItems(${item.id})"  id="#inc-${item.id}">+</span>
       <span class="nbr" id="#product-${item.id}">${item.numbrInCart}</span>
-      <span class="moins">-</span>
+      <span class="moins" onclick="decreaseItems(${item.id})">-</span>
       </div>
       </div>
       `
@@ -92,6 +94,25 @@ Addproducts();
 let newNmb = 0;
 
 
+const increaseItems = (id) => {
+
+    let currentItem = products.find(item => item.id === id);
+
+  let add = currentItem.numbrInCart++;
+
+
+   let numbrElement = document.getElementById(`#product-${currentItem.id}`);
+
+   numbrElement.innerHTML = `<span>${add + 1}</span>`;
+   totalPrice += currentItem.price;
+   
+   totalpDiv.innerHTML = `${totalPrice} $`;
+
+}
+
+
+
+
 // function pour ajouter produit au panier
 const getItem = (id) => {
     
@@ -102,7 +123,7 @@ let numbrElement = document.getElementById(`#product-${currentProduct.id}`);
     
 
      cartdiv.innerHTML += `
-    <div class="cart-items">
+    <div class="cart-items" id="#rm-${currentProduct.id}">
     <img src="${currentProduct.image}" width="100" height="100" />
     <h4>Name</span>
     <p>${currentProduct.name}
@@ -112,11 +133,38 @@ let numbrElement = document.getElementById(`#product-${currentProduct.id}`);
 
     totalPrice += currentProduct.price;
     totalpDiv.innerHTML = `${totalPrice} $`;
-
-    currentProduct.numbrInCart = newNmb + 1;
+     currentProduct.numbrInCart = newNmb + 1;
     numbrElement.innerHTML = `<span>${currentProduct.numbrInCart}</span>`
+
+    let disbtn = document.getElementById(`#cart-${currentProduct.id}`);
+
+    disbtn.setAttribute("disabled", "");
     
 }
+
+const decreaseItems = (id) => {
+
+    let currentItem = products.find(item => item.id === id);
+    let numbrElement = document.getElementById(`#product-${currentItem.id}`);
+    let cartItemToRemove = document.getElementById(`#rm-${id}`);
+    let disbtn = document.getElementById(`#cart-${currentItem.id}`);
+  if (currentItem.numbrInCart != 0) {
+    let add = currentItem.numbrInCart--;
+    numbrElement.innerHTML = `<span>${add - 1}</span>`;
+    totalPrice -= currentItem.price;
+    totalpDiv.innerHTML = `${totalPrice} $`;
+
+    if (add === 1) {
+        cartItemToRemove.parentNode.removeChild(cartItemToRemove);
+
+    disbtn.removeAttribute("disabled")
+
+    }
+  } else {
+    return
+  }
+}
+
 
 // Like function 
 
@@ -126,15 +174,18 @@ const likeItem = (id) => {
     let likeIcon = document.getElementById(`#like-${currentLiked.id}`);
 
     likeIcon.style.color == "" ? likeIcon.style.color = "red" : likeIcon.style.color = "" 
-
-    
-
-
-
+   // if (likeIcon.style.color == "") {
+    //    likeIcon.style.color = "red"
+   // } else {
+    //    likeIcon.style.color = "" 
+   // }
 
 }
 
 
+// function to increase items added in cart
+
+// arrow function : const functionname = () => {}.
 
 
 
